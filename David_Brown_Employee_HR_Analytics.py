@@ -1,5 +1,5 @@
 """
-Program: David_Brown_Employee_HR_Analytics_Task11.py
+Program: David_Brown_Employee_HR_Analytics_Added_Features.py
 Author: David Brown
 Date: May 3, 2026
 Purpose: to create an employee and HR analytics dashboard with added web app features
@@ -15,7 +15,7 @@ import seaborn as sns
 Final Project Update:
 Employee Performance & HR Analytics Dashboard
 Added features from web development class:
-tabs, more filters, user input form, pie chart, download button, and insight boxes.
+tabs, more filters, user input form, pie chart, download button, insight boxes, and light dashboard styling.
 """
 
 
@@ -170,10 +170,78 @@ class HRDashboard:
 
 st.set_page_config(page_title="Employee HR Analytics Dashboard", layout="wide")
 
-st.title("Employee Performance & HR Analytics Dashboard")
+# Light dashboard styling
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #f7f9fc;
+    }
 
-st.write(
-    "This dashboard reviews employee attrition, salary patterns, performance ratings, overtime, and department trends."
+    section[data-testid="stSidebar"] {
+        background-color: #eef3f8;
+    }
+
+    .main-title {
+        background-color: white;
+        padding: 22px;
+        border-radius: 12px;
+        border: 1px solid #e6e6e6;
+        margin-bottom: 20px;
+        box-shadow: 0px 1px 4px rgba(0,0,0,0.05);
+    }
+
+    .main-title h1 {
+        margin-bottom: 8px;
+    }
+
+    .main-title p {
+        font-size: 17px;
+        margin-bottom: 0px;
+    }
+
+    .small-note {
+        background-color: #eef6ff;
+        padding: 12px;
+        border-radius: 10px;
+        border-left: 5px solid #4a90e2;
+        margin-bottom: 18px;
+    }
+
+    div[data-testid="stMetric"] {
+        background-color: white;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #e6e6e6;
+        box-shadow: 0px 1px 3px rgba(0,0,0,0.04);
+    }
+
+    h2, h3 {
+        color: #1f2937;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div class="small-note">
+        Final Project Update: Employee Performance & HR Analytics Dashboard. Added features from web development class:
+        tabs, more filters, user input form, pie chart, download button, insight boxes, and light styling.
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div class="main-title">
+        <h1>Employee Performance & HR Analytics Dashboard</h1>
+        <p>This dashboard reviews employee attrition, salary patterns, performance ratings, overtime, and department trends.</p>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 st.subheader("Load HR Dataset")
@@ -267,8 +335,15 @@ try:
             st.pyplot(dashboard.chart_overall_attrition_pie(), use_container_width=True)
 
         with pie_col2:
-            st.write("This pie chart gives a quick view of employee attrition.")
-            st.write("It works like a simple visual summary for the filtered data.")
+            st.markdown(
+                """
+                <div class="small-note">
+                    This pie chart gives a quick view of employee attrition.
+                    It works like a simple visual summary for the selected filters.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
     with tab2:
         st.subheader("Required HR Visualizations")
