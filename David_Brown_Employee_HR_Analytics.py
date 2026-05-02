@@ -11,14 +11,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-"""
-Final Project Update:
-Employee Performance & HR Analytics Dashboard
-Added features from web development class:
-tabs, more filters, user input form, pie chart, download button, insight boxes, and light dashboard styling.
-"""
-
-
 class HRDashboard:
     def __init__(self, data):
         self.data = data
@@ -220,16 +212,6 @@ st.markdown(
         color: #1f2937;
     }
     </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    """
-    <div class="small-note">
-        Final Project Update: Employee Performance & HR Analytics Dashboard. Added features from web development class:
-        tabs, more filters, user input form, pie chart, download button, insight boxes, and light styling.
-    </div>
     """,
     unsafe_allow_html=True
 )
