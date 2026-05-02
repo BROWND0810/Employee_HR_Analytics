@@ -58,35 +58,41 @@ class HRDashboard:
     def chart_attrition_by_department(self):
         chart_data = self.data.groupby(["Department", "Attrition"]).size().reset_index(name="Count")
 
-        fig, ax = plt.subplots(figsize=(5, 3))
+        fig, ax = plt.subplots(figsize=(4, 2.5))
         sns.barplot(data=chart_data, x="Department", y="Count", hue="Attrition", ax=ax)
 
-        ax.set_title("Attrition by Department")
-        ax.set_xlabel("Department")
-        ax.set_ylabel("Employee Count")
-        ax.tick_params(axis="x", rotation=20)
+        ax.set_title("Attrition by Department", fontsize=10)
+        ax.set_xlabel("Department", fontsize=9)
+        ax.set_ylabel("Employee Count", fontsize=9)
+        ax.tick_params(axis="x", rotation=20, labelsize=8)
+        ax.tick_params(axis="y", labelsize=8)
+        ax.legend(fontsize=8)
 
         plt.tight_layout()
         return fig
 
     def chart_salary_distribution(self):
-        fig, ax = plt.subplots(figsize=(5, 3))
+        fig, ax = plt.subplots(figsize=(4, 2.5))
         sns.histplot(self.data["MonthlyIncome"], bins=20, kde=True, ax=ax)
 
-        ax.set_title("Salary Distribution")
-        ax.set_xlabel("Monthly Income")
-        ax.set_ylabel("Employee Count")
+        ax.set_title("Salary Distribution", fontsize=10)
+        ax.set_xlabel("Monthly Income", fontsize=9)
+        ax.set_ylabel("Employee Count", fontsize=9)
+        ax.tick_params(axis="x", labelsize=8)
+        ax.tick_params(axis="y", labelsize=8)
 
         plt.tight_layout()
         return fig
 
     def chart_performance_distribution(self):
-        fig, ax = plt.subplots(figsize=(5, 3))
+        fig, ax = plt.subplots(figsize=(4, 2.5))
         sns.countplot(data=self.data, x="PerformanceRating", ax=ax)
 
-        ax.set_title("Performance Rating Distribution")
-        ax.set_xlabel("Performance Rating")
-        ax.set_ylabel("Employee Count")
+        ax.set_title("Performance Rating Distribution", fontsize=10)
+        ax.set_xlabel("Performance Rating", fontsize=9)
+        ax.set_ylabel("Employee Count", fontsize=9)
+        ax.tick_params(axis="x", labelsize=8)
+        ax.tick_params(axis="y", labelsize=8)
 
         plt.tight_layout()
         return fig
@@ -94,13 +100,14 @@ class HRDashboard:
     def chart_average_salary_by_department(self):
         chart_data = self.data.groupby("Department")["MonthlyIncome"].mean().reset_index()
 
-        fig, ax = plt.subplots(figsize=(5, 3))
+        fig, ax = plt.subplots(figsize=(4, 2.5))
         sns.barplot(data=chart_data, x="Department", y="MonthlyIncome", ax=ax)
 
-        ax.set_title("Average Monthly Income by Department")
-        ax.set_xlabel("Department")
-        ax.set_ylabel("Average Monthly Income")
-        ax.tick_params(axis="x", rotation=20)
+        ax.set_title("Average Monthly Income by Department", fontsize=10)
+        ax.set_xlabel("Department", fontsize=9)
+        ax.set_ylabel("Average Monthly Income", fontsize=9)
+        ax.tick_params(axis="x", rotation=20, labelsize=8)
+        ax.tick_params(axis="y", labelsize=8)
 
         plt.tight_layout()
         return fig
@@ -110,12 +117,14 @@ class HRDashboard:
         chart_data = chart_data["JobRole"].value_counts().reset_index()
         chart_data.columns = ["JobRole", "Count"]
 
-        fig, ax = plt.subplots(figsize=(6, 4))
+        fig, ax = plt.subplots(figsize=(5, 3))
         sns.barplot(data=chart_data, x="Count", y="JobRole", ax=ax)
 
-        ax.set_title("Attrition by Job Role")
-        ax.set_xlabel("Employee Count")
-        ax.set_ylabel("Job Role")
+        ax.set_title("Attrition by Job Role", fontsize=10)
+        ax.set_xlabel("Employee Count", fontsize=9)
+        ax.set_ylabel("Job Role", fontsize=9)
+        ax.tick_params(axis="x", labelsize=8)
+        ax.tick_params(axis="y", labelsize=8)
 
         plt.tight_layout()
         return fig
@@ -123,23 +132,28 @@ class HRDashboard:
     def chart_overtime_and_attrition(self):
         chart_data = self.data.groupby(["OverTime", "Attrition"]).size().reset_index(name="Count")
 
-        fig, ax = plt.subplots(figsize=(5, 3))
+        fig, ax = plt.subplots(figsize=(4, 2.5))
         sns.barplot(data=chart_data, x="OverTime", y="Count", hue="Attrition", ax=ax)
 
-        ax.set_title("Overtime and Attrition")
-        ax.set_xlabel("Overtime")
-        ax.set_ylabel("Employee Count")
+        ax.set_title("Overtime and Attrition", fontsize=10)
+        ax.set_xlabel("Overtime", fontsize=9)
+        ax.set_ylabel("Employee Count", fontsize=9)
+        ax.tick_params(axis="x", labelsize=8)
+        ax.tick_params(axis="y", labelsize=8)
+        ax.legend(fontsize=8)
 
         plt.tight_layout()
         return fig
 
     def chart_years_at_company(self):
-        fig, ax = plt.subplots(figsize=(5, 3))
+        fig, ax = plt.subplots(figsize=(4, 2.5))
         sns.histplot(self.data["YearsAtCompany"], bins=20, kde=True, ax=ax)
 
-        ax.set_title("Years at Company Distribution")
-        ax.set_xlabel("Years at Company")
-        ax.set_ylabel("Employee Count")
+        ax.set_title("Years at Company Distribution", fontsize=10)
+        ax.set_xlabel("Years at Company", fontsize=9)
+        ax.set_ylabel("Employee Count", fontsize=9)
+        ax.tick_params(axis="x", labelsize=8)
+        ax.tick_params(axis="y", labelsize=8)
 
         plt.tight_layout()
         return fig
@@ -147,15 +161,16 @@ class HRDashboard:
     def chart_overall_attrition_pie(self):
         attrition_counts = self.data["Attrition"].value_counts()
 
-        fig, ax = plt.subplots(figsize=(4, 4))
+        fig, ax = plt.subplots(figsize=(3, 3))
         ax.pie(
             attrition_counts,
             labels=attrition_counts.index,
             autopct="%1.1f%%",
-            startangle=90
+            startangle=90,
+            textprops={"fontsize": 8}
         )
 
-        ax.set_title("Overall Employee Attrition")
+        ax.set_title("Overall Employee Attrition", fontsize=10)
         plt.tight_layout()
         return fig
 
@@ -311,10 +326,10 @@ try:
 
         st.subheader("Overall Attrition Visual")
 
-        pie_col1, pie_col2 = st.columns([1, 1])
+        pie_col1, pie_col2 = st.columns([1, 2])
 
         with pie_col1:
-            st.pyplot(dashboard.chart_overall_attrition_pie(), use_container_width=True)
+            st.pyplot(dashboard.chart_overall_attrition_pie(), use_container_width=False)
 
         with pie_col2:
             st.markdown(
@@ -335,15 +350,15 @@ try:
         chart_col1, chart_col2 = st.columns(2)
 
         with chart_col1:
-            st.pyplot(dashboard.chart_attrition_by_department(), use_container_width=True)
+            st.pyplot(dashboard.chart_attrition_by_department(), use_container_width=False)
 
         with chart_col2:
-            st.pyplot(dashboard.chart_salary_distribution(), use_container_width=True)
+            st.pyplot(dashboard.chart_salary_distribution(), use_container_width=False)
 
         chart_col3, chart_col4 = st.columns(2)
 
         with chart_col3:
-            st.pyplot(dashboard.chart_performance_distribution(), use_container_width=True)
+            st.pyplot(dashboard.chart_performance_distribution(), use_container_width=False)
 
         with chart_col4:
             st.info(
@@ -358,18 +373,18 @@ try:
         extra_col1, extra_col2 = st.columns(2)
 
         with extra_col1:
-            st.pyplot(dashboard.chart_average_salary_by_department(), use_container_width=True)
+            st.pyplot(dashboard.chart_average_salary_by_department(), use_container_width=False)
 
         with extra_col2:
-            st.pyplot(dashboard.chart_overtime_and_attrition(), use_container_width=True)
+            st.pyplot(dashboard.chart_overtime_and_attrition(), use_container_width=False)
 
         extra_col3, extra_col4 = st.columns(2)
 
         with extra_col3:
-            st.pyplot(dashboard.chart_attrition_by_job_role(), use_container_width=True)
+            st.pyplot(dashboard.chart_attrition_by_job_role(), use_container_width=False)
 
         with extra_col4:
-            st.pyplot(dashboard.chart_years_at_company(), use_container_width=True)
+            st.pyplot(dashboard.chart_years_at_company(), use_container_width=False)
 
         st.subheader("HR Review Notes")
 
